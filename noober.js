@@ -6,9 +6,25 @@ async function pageLoaded() {
   console.dir(json)
   
   // 🔥 start here: write code to loop through the rides
-  
+
 for(i=0; i<json.length; i++) {
+  
+    if (json[i].length > 1) {
+      levelOfService = "Noober Pool"
+      borderColor = "border-gray-900"
+    } else if (json[i][0].numberOfPassengers > 3) {
+      levelOfService = "Noober XL"
+      borderColor = "border-gray-900"
+    } else if (json[i][0].purpleRequested = true) {
+      levelOfService = "Noober Purple"
+      borderColor = "border-purple-500"
+    } else {
+      levelOfService = "Noober X"
+      borderColor = "border-gray-900"
+    } 
+
   for(j=0; j<json[i].length; j++) {
+    
     passengerName = json[i][j].passengerDetails.first + " " + json[i][j].passengerDetails.last
     phoneNumber = json[i][j].passengerDetails.phoneNumber
     pickupLocationLine1 = json[i][j].pickupLocation.address
@@ -24,10 +40,10 @@ for(i=0; i<json.length; i++) {
     `
     <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
       <i class="fas fa-car-side"></i>
-      <span>Noober X</span>
+      <span>${levelOfService}</span>
     </h1>
 
-    <div class="border-4 border-gray-900 p-4 my-4 text-left">
+    <div class="border-4 ${borderColor} p-4 my-4 text-left">
       <div class="flex">
         <div class="w-1/2">
           <h2 class="text-2xl py-1">${passengerName}</h2>
